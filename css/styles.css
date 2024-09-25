@@ -1,0 +1,73 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', serif;
+    
+    /* overflow: hidden; Prevents scrolling due to slider overflow */
+}
+
+
+.poster{
+    margin-top: 80px;
+}
+
+.poster img{
+    width: 100%; /* Make the image take up the full width of the container */
+    height: 600px; /* Make the image take up the full height of the container */
+    object-fit: cover; /* Cover the entire container, cropping the image if necessary */
+    transition: opacity 1s ease-in-out;
+}
+
+
+
+
+#logo_pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+
+/* Main section styling */
+.main-section {
+    padding: 40px 0;
+    background-color: #f5f5f5;
+}
+
+
+
+/* Heading styles */
+.main-section h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #333;
+    font-family: 'Tangerine', serif;
+}
+
+
+
+
+
+/* movies list display */
+/* Slider Container Styling */
+.slider-container {
+    width: 100%;
+    overflow: hidden; /* Hides overflow of the slider */
+    position: relative;
+    margin-top: 20px; /* Margin at the top for better view */
+}
+/* Slider Styling */
+.slider {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+    animation: slide 30s linear infinite;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}

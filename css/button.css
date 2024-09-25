@@ -1,0 +1,25 @@
+.explore-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+     background-color: #ff6347; /* Tomato color */
+     color: white;
+     border: none;
+     padding: 12px 24px;
+     font-size: 16px;
+     font-weight: bold;
+     text-transform: uppercase;
+     justify-content: center;
+     border-radius: 25px;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.2s ease;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     outline: none;
+ }
+
+ /* Container for Centering the Button */
+.button-container {
+    display: flex; /* Enables Flexbox */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically (if needed) */
+    width: 100%; /* Full width of the container */
+}

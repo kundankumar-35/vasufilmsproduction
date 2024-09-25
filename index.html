@@ -1,0 +1,227 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vashu films productions</title>
+    <!-- Google Fonts (Optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Poppins'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/movies_card.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/headline.css">
+    <link rel="icon" href="images/vasufilmproduction.jpg" type="image/png">
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+   
+
+</head>
+<body>
+    <!-- Header Top Bar -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="logo">
+              <img src="images/vasufilmproduction.jpg" alt="" srcset="" id="logo_pic">
+              <h3>vasu Films </h3>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#latest-movies">Movies</a>
+                <a href="#tvshow" >Tv Shows</a>
+                <a href="#music">music</a>
+                <a href="#webseries">web series</a>
+                
+                <a href="#contact">Contact</a>
+                <a href="admin.html">login</a>
+            </div>
+            <!-- <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div> -->
+        </div>
+    </header>
+
+   
+
+    <div class="poster" >
+        <img src="images/main_background.jpg" id="poster" class="poster_pic" alt="" srcset="">
+    </div>
+
+
+    <!-- here we display movies list horizontal sliding-->
+     
+        <h1 id="field-name">latest movies</h1>
+     
+       <!-- Movie Card Slider Container -->
+    <div class="slider-container">
+       
+        <div class="slider" id="latest-movies"> </div>
+
+
+        <!-- <div class="button-container">
+            <button class="explore-button" id="exploreButton">Explore...</button>
+        </div> -->
+       
+    </div>
+
+
+     <!-- tv Shows -->
+  
+
+
+ 
+        <h1 id="field-name">TV Shows</h1>
+    
+
+
+    <div class="tvshow slider" id="tvshow"></div>
+
+    <h1 id="field-name" > Music</h1>
+    <div class=" music slider"></div>
+
+    
+        <h1 id="field-name">web series</h1>
+    
+
+    <div class="web-series slider" id="webseries"> </div>
+
+
+
+     <!-- Fancy Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: About -->
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <p>we provide movies tailor and webseries poster.</p>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>Email: vasufilmsproduction@gmail.com
+            info@vasufilms.in </li>
+          <li>Phone:7683036104</li>
+          <li>Address:VASU FILMS, Thana Road, opp. HP Petrol Pump, Najafgarh, New Delhi, Delhi 110043</li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Social Media -->
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61565115220339&mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/vasufilms.in?igsh=b2plZjdyMnYwcmR3"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom">
+      <p>&copy; 2024 vasufilmsproduction. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+     
+
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBaMTOEd0Q7edvVoSvNHDjDnsf44Cy8R1o",
+        authDomain: "vasufilmsproduction-1f69d.firebaseapp.com",
+        databaseURL: "https://vasufilmsproduction-1f69d-default-rtdb.firebaseio.com",
+        projectId: "vasufilmsproduction-1f69d",
+        storageBucket: "vasufilmsproduction-1f69d.appspot.com",
+        messagingSenderId: "957033163838",
+        appId: "1:957033163838:web:00ff437974d69e6811756f"
+        // measurementId: "G-NG20C3FV0E"
+      };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Fetch and display movies from Firebase
+     async   function loadMovies(id , path) {
+            const moviesRef = database.ref(path); // Path to your movie data
+
+            moviesRef.once('value').then((snapshot) => {
+                const moviesContainer = document.getElementById(id);
+                moviesContainer.innerHTML = ''; // Clear the container before adding new data
+
+                snapshot.forEach((childSnapshot) => {
+                    const movieData = childSnapshot.val();
+                    
+                    const movieCard = document.createElement('div');
+                    movieCard.className = 'movie-card';
+
+                    // Create the movie card with custom structure
+                    movieCard.innerHTML = `
+                        <div class="movie-image">
+                            <img src="${movieData.imageUrl}" alt="${movieData.title}">
+                        </div>
+                        <div class="movie-details">
+                            <h3 class="movie-title">${movieData.title}</h3>
+                            <p class="movie-genre">Genre: ${movieData.genre || 'N/A'}</p>
+                            <p class="movie-description">${movieData.description || 'No description available.'}</p>
+                            <div class="movie-buttons">
+                                <a href="${movieData.trailerUrl}" target="_blank">
+                                    <button class="trailer-btn">Watch Trailer</button>
+                                </a>
+                                <!-- <button class="book-btn">Book Now</button> -->
+                                 <!-- button class="details-btn">More Details</button -->
+                            </div>
+                        </div>
+                    `;
+
+                    moviesContainer.appendChild(movieCard);
+                });
+            }).catch((error) => {
+                console.error("Error fetching movie data:", error);
+            });
+        }
+
+        // Load movies on page load
+        window.onload = loadMovies("tvshow"  ,"tvshow");
+       window.onload =  loadMovies("webseries"  ,"webseries");
+       window.onload =  loadMovies("latest-movies"  ,"All");
+       window.onload= loadMovies("music"  ,"music");
+    });
+</script>
+<script src="script.js"/>
+</body>
+</html>

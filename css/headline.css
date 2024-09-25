@@ -1,0 +1,10 @@
+#field-name {
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    tab-size: 33px;
+    letter-spacing: 2px;
+    font-weight: 900;
+    color: rgb(59, 57, 57);
+     padding: 32px 0;
+    }

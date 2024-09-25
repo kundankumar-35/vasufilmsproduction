@@ -1,0 +1,85 @@
+
+
+.movie-card {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    background-color: #000;
+    color: white;
+    margin: 30px 15px;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.movie-details {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    opacity: 0;
+    overflow: hidden;
+    transition: height 0.5s ease, opacity 0.5s ease;
+}
+
+.movie-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.movie-genre {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.movie-description {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.movie-buttons button {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 15px;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.movie-buttons button:hover {
+    background-color: #e65c00;
+}
+
+.movie-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card:hover .movie-image img {
+    opacity: 0.3;
+}
+
+.movie-card:hover .movie-details {
+    height: 60%;
+    opacity: 1;
+}

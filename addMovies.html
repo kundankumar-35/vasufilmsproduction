@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Add Movie Details</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #add_movies{
+            font-size: 44px;
+            color: red;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-right: 100px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button, select {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<h2 id="add_movies">Add Movies</h2>
+<form id="movieForm">
+    <input type="text" id="title" placeholder="Movie Title" required>
+    <input type="text" id="details" placeholder="Movie details" required>
+    <label for="category">Choose a category:</label>
+    <select id="category" name="category">
+        <option value="music">Music</option>
+        <option value="webseries">Web Series</option>
+        <option value="tvshow">TV Show</option>
+        <option value="movie">Movie</option>
+        <option value="documentary">Documentary</option>
+        <option value="sports">Sports</option>
+    </select>
+    <input type="file" id="image" accept="image/*" required>
+    <input type="text" id="trailerUrl" placeholder="Trailer URL" required>
+    <button type="submit">Add Movie</button>
+</form>
+
+<div id="moviesContainer"></div> <!-- Container to display the movies -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+       
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBaMTOEd0Q7edvVoSvNHDjDnsf44Cy8R1o",
+            authDomain: "vasufilmsproduction-1f69d.firebaseapp.com",
+            databaseURL: "https://vasufilmsproduction-1f69d-default-rtdb.firebaseio.com",
+            projectId: "vasufilmsproduction-1f69d",
+            storageBucket: "vasufilmsproduction-1f69d.appspot.com",
+            messagingSenderId: "957033163838",
+            appId: "1:957033163838:web:00ff437974d69e6811756f",
+            measurementId: "G-NG20C3FV0E"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const database = firebase.database();
+
+        // Handle form submission to add movies
+        document.getElementById('movieForm').addEventListener('submit', async (event) => {
+            event.preventDefault();  // Prevent the default form submission
+
+            const title = document.getElementById('title').value;
+            const details = document.getElementById('details').value;
+            const category = document.getElementById('category').value;
+            const imageFile = document.getElementById('image').files[0];
+            const trailerUrl = document.getElementById('trailerUrl').value;
+
+            if (!imageFile) {
+                alert("Please select an image!");
+                return;
+            }
+
+            try {
+                // Upload image to Firebase Storage
+                const imageRef = storage.ref().child(`movies/${imageFile.name}`);
+                const snapshot = await imageRef.put(imageFile);
+
+                // Get the download URL of the uploaded image
+                const imageUrl = await snapshot.ref.getDownloadURL();
+
+                // Store movie details in Firebase Realtime Database
+                await database.ref(category).push({
+                    title: title,
+                    details:details,
+                    imageUrl: imageUrl,
+                    category:category,
+                    trailerUrl: trailerUrl
+                });
+
+                await database.ref("All").push({
+                    title: title,
+                    details:details,
+                    imageUrl: imageUrl,
+                    category:category,
+                    trailerUrl: trailerUrl
+                });
+
+                alert("Movie added successfully!");
+                document.getElementById('movieForm').reset();  // Reset the form
+
+                // Refresh movie list after adding a new one
+              
+
+            } catch (error) {
+                console.error("Error uploading image and saving movie details:", error);
+                alert("Error adding movie.");
+            }
+        });
+
+       
+    });
+</script>
+
+</body>
+</html>
